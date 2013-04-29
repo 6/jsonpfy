@@ -3,6 +3,10 @@ require 'uri'
 require 'net/http'
 
 Sinatra.new do
+  configure :production do
+    require 'newrelic_rpm'
+  end
+
   get '/' do
     if params[:uri] && params[:callback]
       handle_jsonp_request
